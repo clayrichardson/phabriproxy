@@ -17,7 +17,6 @@ RUN mkdir -p /var/run/nginx
 RUN mkdir -p /var/log/supervisor
 
 ADD ./ssl /ssl
-ADD ./setup /setup
 ADD ./conf /conf
 
 ADD ./conf/nginx/nginx.conf /etc/nginx/nginx.conf
