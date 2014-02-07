@@ -15,13 +15,23 @@ RUN apt-get install -qy git
 
 RUN mkdir -p /var/run/nginx
 RUN mkdir -p /var/log/supervisor
+RUN mkdir -p /var/log/nginx
+
+RUN touch /var/log/nginx/access.log
+RUN touch /var/log/nginx/error.log
+
+RUN rm /etc/nginx/nginx.conf /etc/nginx/sites-enabled/* /etc/nginx/sites-available/*
 
 ADD ./ssl /ssl
 ADD ./conf /conf
+ADD ./setup /setup
+ADD ./run /run
+
+RUN /bin/bash /setup/setup.sh
 
 ADD ./conf/nginx/nginx.conf /etc/nginx/nginx.conf
 ADD ./conf/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 80/tcp 443/tcp
 
-CMD ["/usr/bin/supervisord", "--nodaemon"]
+CMD ["/bin/bash", "/run/start.sh"]
