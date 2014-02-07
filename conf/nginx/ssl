@@ -15,11 +15,10 @@ server {
 
   root      /var/www/phabricator/webroot;
 
-  client_max_body_size 100M;
-
   location / {
     proxy_pass PHABRICATOR_CONTAINER;
     proxy_set_header Host $host;
+    proxy_read_timeout 300;
   }
 }
 
