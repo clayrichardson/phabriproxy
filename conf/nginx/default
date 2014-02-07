@@ -1,0 +1,10 @@
+
+server {
+  listen 80;
+
+  location / {
+    proxy_pass PHABRICATOR_CONTAINER;
+    proxy_set_header Host $host;
+  }
+}
+
