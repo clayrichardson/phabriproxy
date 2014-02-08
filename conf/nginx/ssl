@@ -18,6 +18,7 @@ server {
   location / {
     proxy_pass PHABRICATOR_CONTAINER;
     proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-Proto https;
     proxy_read_timeout 300;
   }
 }
