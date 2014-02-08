@@ -6,7 +6,7 @@ task :build do
 end
 
 task :run do
-  sh('docker run -t -p 80:80 -p 443:443 phabriproxy')
+  sh('docker run -d -link phabricator:phab -t -p 80:80 -p 443:443 phabriproxy')
 end
 
 task :attach do
