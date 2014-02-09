@@ -6,7 +6,7 @@ task :build do
 end
 
 task :run do
-  sh('docker run -d -link phabricator:phab -t -p 80:80 -p 443:443 phabriproxy')
+  sh('docker run -d -link phabricator:phab -t -i -p 80:80 -p 443:443 phabriproxy')
 end
 
 task :attach do
@@ -14,11 +14,11 @@ task :attach do
 end
 
 task :interactive do
-  sh('docker run -link phabricator:phab  -t -p 80:80/tcp -p 443:443/tcp -i phabriproxy')
+  sh('docker run -link phabricator:phab  -t -i -p 80:80/tcp -p 443:443/tcp phabriproxy')
 end
 
 task :shell do
-  sh('docker run -link phabricator:phab -t -p 80:80/tcp -p 443:443/tcp -i phabriproxy /bin/bash')
+  sh('docker run -link phabricator:phab -t -i -p 80:80/tcp -p 443:443/tcp phabriproxy /bin/bash')
 end
 
 task :kill do
